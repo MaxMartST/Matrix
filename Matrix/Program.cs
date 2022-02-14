@@ -149,6 +149,22 @@ namespace Matrix
 
             return false;
         }
+
+        public static Matrix GetTransposeMatrix(Matrix matrix)
+        {
+            var size = GetSize(matrix);
+            var resultArr = new int[size.Item1, size.Item2];
+
+            for (int i = 0; i < size.Item1; i++)
+            {
+                for (int j = 0; j < size.Item2; j++)
+                {
+                    resultArr[j, i] = matrix.arr[i, j];
+                }
+            }
+
+            return new Matrix(resultArr);
+        }
     }
 
     class Program
@@ -162,18 +178,11 @@ namespace Matrix
                 { 7, 8, 9 }
             };
 
-            //int[,] inputArr2 =
-            //{
-            //{ 3, 2, 1 },
-            //{ 6, 5, 4 },
-            //{ 9, 8, 7 }
-            //};
-
             int[,] inputArr2 =
             {
-                { 1, 2, 3 },
-                { 4, 5, 6 },
-                { 7, 8, 9 }
+                { 3, 2, 1 },
+                { 6, 5, 4 },
+                { 9, 8, 7 }
             };
 
             Matrix matrix1 = new Matrix(inputArr1);
@@ -184,7 +193,18 @@ namespace Matrix
 
             //Console.WriteLine(Matrix.IsSameSize(matrix1, matrix2));
 
+            /*            
+            int[,] inputArr2 =
+            {
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 }
+            };
             Console.WriteLine(matrix1 != matrix2);
+            */
+
+            var transposeMatrix = Matrix.GetTransposeMatrix(matrix2);
+            Matrix.PrintMatrix(transposeMatrix);
 
             Console.ReadLine();
         }
